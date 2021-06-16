@@ -35,14 +35,14 @@ var baseMaps = {
   "Dark Map": darkmap,
   "Satellite Map": satelliteMap,
   "Street Map": streetmap
-  };
+};
 
 // creating overlay object to hold overlay layer
 var overlayMaps = {
   "Earthquakes": earthquakes
 };
 
-// creating map, giving it the streetmap and earthquakes layers to display on load
+// creating map, giving it the darkmap and earthquakes layers to display on load
 var myMap = L.map("map", {
   center: [
     37.09, -95.71
@@ -91,7 +91,7 @@ function createFeatures(earthquakeData) {
   // defining a function to run once for each feature in the features array giving each feature a popup describing the earthquake
   function popUp(feature, layer) {
     layer.bindPopup("<h3>Location: " + feature.properties.place +
-      "</h3><hr><b>Date</b>: " + new Date(feature.properties.time) + "</br>" + "</h3><b>Depth</b>: "
+      "</h3><hr><b>Date</b>: " + new Date(feature.properties.time) + "</br><b>Depth</b>: "
       + feature.geometry.coordinates[2] + "</br><b>Magnitude</b>: " + feature.properties.mag + "</br>");
   }
 
@@ -106,8 +106,7 @@ function createFeatures(earthquakeData) {
         opacity: 1,
         fillOpacity: 0.8
       });
-    },
-
+    },    
     onEachFeature: popUp
   }).addTo(earthquakes);
 
